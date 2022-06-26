@@ -1,28 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
-import React ,{useState,useContext} from 'react';
-import axios from 'axios'
-import dataContext from './Context/DataContext';
+import React ,{useState,useContext, useEffect} from 'react';
+import TodoStore from './store/Todo';
+import { Link } from 'react-router-dom';
 function App() {
-  const {setValue,value,handleSubmit,text} = useContext(dataContext)
+  const {todo,addTodo,removeTodo,searchTodo,filter} = TodoStore((state) =>state)
+console.log(filter)
+ 
+  const [value,setValue] = useState('')
+  const [search,setSearch] = useState('')
 
   return (
     <div className='container-app'>
+      <input type="text" onChange={(e)=> setValue(e.target.value)}/>
+      <input type="text" onChange={(e)=> setSearch(e.target.value)}/>
+      
+      <button onClick={()=>addTodo(value)}>Add</button>
+      <button onClick={()=>searchTodo(search)}>cari</button>
+
+       {filter === undefined || filter === null ||filter ===[] ? <h1>Tidak Ada Boy</h1> : filter.map(e=> <h1>{e}</h1>)}
+      {todo.length > 0 && todo.map((e,i)=>{
+        return <div key={i}>
+          <p>{e}</p>
+          <button onClick={()=>removeTodo(i)}>Remove</button>
+          <Link to ={`edit/${i}`}>Edit</Link>
+        </div>
+      })}
+    
 
   
-    <div className="container">
-    <div className="brand-logo"></div>
-    <div className="brand-title">SHOTGAN PLAGIARISM</div>
-    <form className="inputs" onSubmit={handleSubmit}>
-      <label>MASUKAN MINIMAL 40 HURUF</label>
-      <textarea type="text" placeholder="masukan Text Anda" onChange={(e)=>setValue(e.target.value)}/>
-   
-      <button type="submit">Cari</button>
-      <p>{text}</p>
-    </form>
-  
-   
-  </div>
+    
   </div>
   );
 }

@@ -3,21 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {DataProvider} from './Context/DataContext'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Download from './Components/Download';
+import Edit from './Edit';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <DataProvider>
+   
       <Routes>
- <Route path='/' element={<App />}/>
- <Route path='download' element={<Download />}/>           
+ <Route exact path='/' element={<App />}/>
+ <Route path='edit/:id' element={<Edit />}/>
+       
 </Routes>
 
-    </DataProvider>
+ 
     </BrowserRouter>
   </React.StrictMode>
 );
