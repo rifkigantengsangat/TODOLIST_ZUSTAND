@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react'
+import './edit.css'
 import TodoStore from './store/Todo'
 import {useParams,useNavigate} from 'react-router-dom'
 
@@ -15,12 +16,11 @@ const Edit = () => {
        }
   return (
     <div>
-        <h1>EDIT</h1>
-     <form onSubmit={handleSubmit}>       
-        <input type = "text"  onChange={(e)=>setBaru(e.target.value)} />
-       <button type = "submit">halo</button>
-       
-        </form>
+    <span>R</span>
+    <span>I</span>
+    <span>F</span>
+    <span>K</span>
+    <span>I</span>
     </div>
   )
 }

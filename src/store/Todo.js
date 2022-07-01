@@ -1,6 +1,5 @@
 import create from "zustand";
-
-const TodoStore = create((set)=>({
+ const TodoStore = create((set)=>({
     todo : [],
     filter : [],
     addTodo : (newTodo)=>set((state)=>({
@@ -17,4 +16,5 @@ const TodoStore = create((set)=>({
         
     }))
 }))
+
 export default TodoStore
